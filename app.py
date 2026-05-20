@@ -11,7 +11,7 @@ from pptx.enum.chart import XL_CHART_TYPE
 from pptx.enum.shapes import MSO_AUTO_SHAPE_TYPE
 from pptx.enum.text import PP_ALIGN
 from pptx.util import Inches, Pt
-from scraper import fetch_channel_info, fetch_videos, enrich_videos_with_engagement, parse_upload_date, parse_duration, format_duration, parse_number
+from scraper import fetch_channel_info, fetch_videos, enrich_videos_with_engagement, parse_upload_date, format_duration, parse_number
 
 app = Flask(__name__)
 
