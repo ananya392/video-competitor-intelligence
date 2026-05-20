@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Competitor Intelligence</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; background: #eef2ff; color: #111827; }
+        .page { width: min(100%, 960px); margin: 40px auto; padding: 24px; background: white; border-radius: 20px; box-shadow: 0 24px 80px rgba(15, 23, 42, 0.12); }
+        h1 { font-size: 2.6rem; margin-bottom: 8px; }
+        p { line-height: 1.7; color: #4b5563; }
+        label { display: block; margin-top: 20px; font-weight: 700; font-size: 0.95rem; }
+        input[type="text"] { width: 100%; padding: 14px 16px; border: 1px solid #cbd5e1; border-radius: 14px; font-size: 1rem; margin-top: 8px; min-width: 0; }
+        .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        .grid > div { min-width: 0; }
+        .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 28px; }
+        button { background: #4338ca; color: white; border: none; padding: 14px 24px; border-radius: 13px; font-weight: 700; cursor: pointer; transition: background 0.2s ease-in-out; }
+        button:hover { background: #3730a3; }
+        .note { color: #6b7280; font-size: 0.95rem; margin-top: 8px; }
+        .error { background: #fee2e2; border: 1px solid #fecaca; color: #991b1b; padding: 16px; border-radius: 12px; margin-top: 20px; }
+        @media (max-width: 640px) {
+            .page { padding: 20px 16px; }
+            .grid { gap: 14px; }
+            input[type="text"] { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <h1>Video Competitor Intelligence</h1>
+    <p>Enter your company and up to 4 competitors to generate a live YouTube-based competitive intelligence report with a downloadable PowerPoint.</p>
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+    <form action="/report" method="post">
+        <label for="company_name">Your Company Name</label>
+        <input type="text" id="company_name" name="company_name" placeholder="e.g. Acme Video" required value="{{ values.company_name if values and values.company_name }}" />
+        <div class="grid">
+            <div>
+                <label for="competitor_1">Competitor Name 1</label>
+                <input type="text" id="competitor_1" name="competitor_1" placeholder="Optional" value="{{ values.competitor_1 if values and values.competitor_1 }}" />
+            </div>
+            <div>
+                <label for="competitor_2">Competitor Name 2</label>
+                <input type="text" id="competitor_2" name="competitor_2" placeholder="Optional" value="{{ values.competitor_2 if values and values.competitor_2 }}" />
+            </div>
+            <div>
+                <label for="competitor_3">Competitor Name 3</label>
+                <input type="text" id="competitor_3" name="competitor_3" placeholder="Optional" value="{{ values.competitor_3 if values and values.competitor_3 }}" />
+            </div>
+            <div>
+                <label for="competitor_4">Competitor Name 4</label>
+                <input type="text" id="competitor_4" name="competitor_4" placeholder="Optional" value="{{ values.competitor_4 if values and values.competitor_4 }}" />
+            </div>
+        </div>
+        <div class="actions">
+            <button type="submit">Generate Report</button>
+        </div>
+    </form>
+    <p class="note">This tool uses publicly available YouTube search and video metadata to compare channel performance, content themes, cadence, and engagement.</p>
+</div>
+</body>
+</html>
